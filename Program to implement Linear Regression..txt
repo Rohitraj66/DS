@@ -1,0 +1,36 @@
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+import pandas as pd
+from sklearn.metrics import mean_squared_error, r2_score
+import matplotlib.pyplot as plt
+
+# Assuming 'nahar1.csv' contains 'opening' and 'closing' columns
+df = pd.read_csv('nahar1.csv')
+
+# Extracting features (X) and target variable (y)
+X = df[['opening']]
+y = df[['closing']]
+
+# Splitting the dataset into training and testing sets
+x_train, x_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+# Creating and fitting the linear regression model
+clf = LinearRegression()
+clf.fit(x_train, y_train)
+
+# Predicting on the test set
+y_pred = clf.predict(x_test)
+print("Predictions on the test set:")
+print(y_pred)
+
+# Evaluating the model
+mse = mean_squared_error(y_test, y_pred)
+r2 = r2_score(y_test, y_pred)
+print(f'Mean Squared Error: {mse}')
+print(f'R-squared: {r2}')
+
+# Predicting a new value
+new_value = float(input("Enter today's opening: "))
+new_value_reshaped = [[new_value]]
+predicted_closing = clf.predict(new_value_reshaped)
+print(f'Predicted closing value for today\'s opening: {predicted_closing[0][0]}')

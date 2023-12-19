@@ -1,0 +1,23 @@
+import matplotlib.pyplot as plt
+
+x = [1, 2, 3, 4, 5]
+y = [1, 4, 9, 16, 25]
+
+plt.plot(x, y)
+plt.xlabel("X-axis Label")
+plt.ylabel("Y-axis Label")
+plt.title("Line Plot")
+plt.show()
+
+
+For PieChart
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+labels = ['Category 1', 'Category 2', 'Category 3', 'Category 4']
+sizes = np.array([35, 25, 25, 15])
+
+plt.pie(sizes, labels=labels, autopct='%1.1f%%')
+plt.title("Pie Chart")
+plt.show()

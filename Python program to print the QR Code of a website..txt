@@ -1,0 +1,14 @@
+import pyqrcode
+
+# String which represents the QR code
+url_input = input("Enter your URL: ")
+file_name = input("Enter your file name: ")
+
+# Generate QR code
+qr = pyqrcode.create(url_input)
+
+# Create and save the SVG file named "file_name.svg"
+qr.svg(file_name + ".svg", scale=8)
+
+# Create and save the PNG file named "file_name.png"
+qr.png(file_name + '.png', scale=6)

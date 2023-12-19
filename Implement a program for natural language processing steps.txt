@@ -1,0 +1,29 @@
+import nltk
+
+nltk.download('punkt')
+nltk.download('averaged_perceptron_tagger')
+nltk.download('wordnet')
+
+from nltk import ngrams, word_tokenize, sent_tokenize, pos_tag
+from nltk.stem import WordNetLemmatizer, PorterStemmer
+
+sentence = input("Enter the sentence: ")
+n = int(input("Enter the value of n: "))
+n_grams = ngrams(sentence.split(), n)
+
+print("ngrams printing:")
+for grams in n_grams:
+    print(grams)
+
+print("tokens printing:")
+print(word_tokenize(sentence))
+print(sent_tokenize(sentence))
+
+tags = pos_tag(word_tokenize(sentence))
+print(tags)
+
+lemmatizer = WordNetLemmatizer()
+ps = PorterStemmer()
+
+for w in word_tokenize(sentence):
+    print(f'{w}: Stemmed - {ps.stem(w)}, Lemmatized - {lemmatizer.lemmatize(w)}')
